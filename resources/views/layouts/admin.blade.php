@@ -14,17 +14,71 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans text-gray-900 antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
-            <div>
-                <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-                </a>
-            </div>
+<body>
+    <div id="app">
+        <nav class="navbar navbar-expand-md navbar-light bg-light">
+              <div class="container">
+                <a class="navbar-brand d-flex align-items-center" href="{{ url('/') }}">Navbar</a>
 
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
-                {{ $slot }}
-            </div>
-        </div>
-    </body>
-</html>
+                <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
+                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="collapsibleNavId">
+                    <!---SX-->
+                    <ul class="navbar-nav me-auto mt-2 mt-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{{url('/') }}">{{__('Home')}} </a>
+                        </li>
+                    </ul>
+
+                    <!--DX-->
+                    <ul class="navbar-nav ml-auto">
+                         <!--Autentication links-->
+                         @guest
+                        <li class="nav-item">
+                          <a class="nav-link" href="{{ route('login') }}">{{__('login') }}</a>
+                        </li>
+                        @if (Route::has('register'))
+                        <li class="nav-item">
+                          <a class="nav-link" href="{{ route('register') }}">{{__('Register') }}</a>
+                        </li>
+                        @endif
+                        @else
+
+                        <li class="nav-item dropdown">
+                          <a id="navbarDropdown " class="nav-link dropdown-toggle" href="#" role="button"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            {{ Auth::user()->name }}
+                          </a>
+                    
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ url('dashboard')}}">{{__('Dashboard')}}</a>
+                                    <a class="dropdown-item" href="{{ url('profile')}}">{{__('Profile')}}</a>
+                                    <a class="dropdown-item" href="{{ route('logout')}}" onclick="event.preventDefault(); 
+                                        document.getElementById('logout-form').submit();">
+                                        {{__('Logout') }}
+                                    </a>
+                
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                        @endguest
+                    </ul>
+                </div>
+        </nav>
+        
+        <main class="">
+            @yield('contant')
+            
+        </main>
+
+    </div>
+</body>
+</html>    
+    
