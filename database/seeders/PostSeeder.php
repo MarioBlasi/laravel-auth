@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Post;
+use Faker\Generator as Faker;
 
 class PostSeeder extends Seeder
 {
@@ -12,8 +13,18 @@ class PostSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run(Faker $faker)
     {
-        //
+        for ($i = 0; $i < 20; $i++) {
+            Post::create([
+                'name' => $faker->word(),
+                'description' => $faker->sentence(),
+                'status' => $faker->randomElement(['pending', 'ongoing', 'completed']),
+                'password' => $faker->password(),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
     }
 }
+

@@ -1,5 +1,5 @@
-@extends('layouts.app')
-@section('title', 'Project' )
+@extends('layouts.admin')
+@section('title', 'Post' )
 
 @section('content')
 
@@ -12,9 +12,9 @@
 
     @endif
 
-    <h1>project List</h1>
+    <h1>post List</h1>
 
-    <a class="btn btn-primary my-4" href="{{route('admin.project.create')}}" role="button">Create</a>
+    <a class="btn btn-primary my-4" href="{{route('admin.post.create')}}" role="button">Create</a>
 
     <div class="table-responsive">
         <table class="table table-secondary">
@@ -28,32 +28,32 @@
             </thead>
             <tbody>
 
-                @forelse ($projectList as $project)
+                @forelse ($postList as $post)
                 <tr>
-                    <td scope="row">{{$project->id}}</td>
-                    <td>{{$project->name}}</td>
-                    <td>{{$project->email}}</td>
-                    <td>{{$project->password}}</td>
+                    <td scope="row">{{$post->id}}</td>
+                    <td>{{$post->name}}</td>
+                    <td>{{$post->email}}</td>
+                    <td>{{$post->password}}</td>
                     <td>
-                        <img width="100" class="img-fluid" src="{{$project->image}}" alt="{{$project->name .' ' . $project->email}}">
+                        <img width="100" class="img-fluid" src="{{$post->image}}" alt="{{$post->name .' ' . $post->email}}">
                     </td>
                     <td>
                         <div class="d-flex align-items-center gap-2">
-                            <a href="{{ route('admin.project.show', $project->id) }}" class="btn btn-outline-dark d-flex align-items-center gap-1" title="{{ __('View') }}">
+                            <a href="{{ route('admin.post.show', $post->id) }}" class="btn btn-outline-dark d-flex align-items-center gap-1" title="{{ __('View') }}">
                                 <i class="fa-solid fa-eye"></i>
                             </a>
-                            <a href="{{ route('admin.project.edit', $project->id) }}" class="btn btn-outline-dark d-flex align-items-center gap-1" title="{{ __('Edit') }}">
+                            <a href="{{ route('admin.post.edit', $post->id) }}" class="btn btn-outline-dark d-flex align-items-center gap-1" title="{{ __('Edit') }}">
                                 <i class="fa-solid fa-pencil"></i>
                             </a>
                             <!-- Modal trigger button -->
-                            <button type="button" class="btn btn-outline-danger d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="{{ '#modal' . $project->id }}" title="{{ __('Delete') }}">
+                            <button type="button" class="btn btn-outline-danger d-flex align-items-center gap-1" data-bs-toggle="modal" data-bs-target="{{ '#modal' . $post->id }}" title="{{ __('Delete') }}">
                                 <i class="fa-solid fa-trash"></i>
                             </button>
-                            <div class="modal fade" id="{{ 'modal' . $project->id }}" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="{{ 'modalTitle' . $project->id }}" aria-hidden="true">
+                            <div class="modal fade" id="{{ 'modal' . $post->id }}" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="{{ 'modalTitle' . $post->id }}" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title text-danger" id="{{ 'modalTitle' . $project->id }}">{{ __('Danger Zone') }}
+                                            <h5 class="modal-title text-danger" id="{{ 'modalTitle' . $post->id }}">{{ __('Danger Zone') }}
                                             </h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
@@ -63,7 +63,7 @@
                                         </div>
                                         <div class="modal-footer d-flex justify-content-between">
                                             <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">{{ __('Close') }}</button>
-                                            <form action="{{ route('admin.project.destroy', $project) }}" method="post">
+                                            <form action="{{ route('admin.post.destroy', $post) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-outline-danger">

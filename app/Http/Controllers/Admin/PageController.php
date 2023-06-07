@@ -4,14 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Project;
+use App\Models\Post;
 class PageController extends Controller
 
 
 {
     public function index(){
-        $projectList = project::all();
-        return view('home', compact('projectList'));
+        // $projectList = Project::all();
+        // return view('home', compact('projectList'));
+        return view('admin.dashboard');
     }
     public function about(){
         return view('about');

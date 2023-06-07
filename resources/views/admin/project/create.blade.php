@@ -1,13 +1,13 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
-@section('name', 'Add new project')
+@section('name', 'Add new post')
 
 @section('content')
 
     <div class="container">
 
-        <h1 class="text-center p-3 text-uppercase">Add Projects</h1>
-        <form action="{{ route('admin.projects.store') }}" method="post">
+        <h1 class="text-center p-3 text-uppercase">Add posts</h1>
+        <form action="{{ route('admin.posts.store') }}" method="post">
             @csrf
 
             <div class="mb-3 mt-5">

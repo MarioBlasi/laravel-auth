@@ -1,4 +1,4 @@
-<footer></footer>
+<footer>
     <div class="container py-5">
         <div class="row justify-content-between">
             
