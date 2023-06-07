@@ -4,13 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
-class PippoController extends Controller
+use App\Models\Project;
+class PageController extends Controller
 
 
 {
     public function index(){
-        return view('home');
+        $projectList = project::all();
+        return view('home', compact('projectList'));
     }
     public function about(){
         return view('about');

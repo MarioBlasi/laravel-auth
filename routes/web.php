@@ -20,8 +20,8 @@
 
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\PippoController;
-use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Auth\PageController;
+use App\Http\Controllers\Admin\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +34,7 @@ use App\Http\Controllers\Admin\ProjectController;
 |
 */
 
- Route::get('/', [PippoController::class, 'index'])->name('home');
+ Route::get('/', [PageController::class, 'index'])->name('home');
 // Route::get('/', function () {
 //     return view('home');
 // });
@@ -43,3 +43,12 @@ use App\Http\Controllers\Admin\ProjectController;
 // Route::get('/contact', [PostController::class, 'contact'])->name('contact');
 
 // Route::resource('/admin/projects', ProjectController::class, ['as' => 'admin']);
+
+// Route::middleware(['auth', 'verified'])->group(function () {
+//     Route::get('/admin', [PageControllerController::class, 'index'])->name('dashboard');
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// });
+
+// require __DIR__.'/auth.php';
