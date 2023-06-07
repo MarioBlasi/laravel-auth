@@ -41,25 +41,25 @@
                     <div class="position-sticky pt-3">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link {{Route::currentRouteName() == 'admin.dashboard' ? 'bg-dark' : ''}}" aria-current="page" href="{{route('admin.dashboard')}}">
+                                <a class="nav-link {{Route::currentRouteName() == 'admin.dashboard' ? 'bg-danger' : ''}}" aria-current="page" href="{{route('admin.dashboard')}}">
                                     <i class="fa-solid fa-gauge"></i>
                                     {{__('Dashboard')}}
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{Route::currentRouteName() == 'admin.posts.index' ? 'bg-dark' : ''}}" href="{{route('admin.posts.index')}}">
+                                <a class="nav-link {{Route::currentRouteName() == 'admin.posts.index' ? 'bg-danger' : ''}}" href="{{route('admin.posts.index')}}">
                                     <i class="fa-solid fa-thumbtack"></i>
                                     {{__('Posts')}}
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link " href="#">
+                                <a class="nav-link {{Route::currentRouteName() == 'admin.Categories.index' ? 'bg-danger' : ''}}" href="{{route('admin.Categories.index')}}">>
                                     <i class="fa-solid fa-bookmark"></i>
                                     Categories
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link " href="#">
+                                <a class="nav-link {{Route::currentRouteName() == 'admin.Tags.index' ? 'bg-danger' : ''}}" href="{{route('admin.Tags.index')}}">>
                                     <i class="fa-solid fa-tags"></i>
                                     Tags
                                 </a>

@@ -16,7 +16,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $post = Post::orderByDesc('id')->paginate(8);
+
+        return view('admin.posts.index', compact());
     }
 
     /**
@@ -26,7 +28,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.posts.create');
     }
 
     /**
@@ -37,7 +39,15 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        //
+        //validate request
+        $val_data = $request->validate();
+        // generate the title slug
+        $slug = Post::generateSlug($val_data['title']);
+        $val_data['slug'] = $slug;
+        // create the new post
+        Post::create($val_data);
+        // redirect back
+        return to_route('admin.posts.index')->with('message', 'Post Created Successfully');
     }
 
     /**
