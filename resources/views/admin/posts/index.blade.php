@@ -32,6 +32,45 @@
                     <td>{{$post->title}}</td>
                     <td>{{$post->slug}}</td>
                     <td>
+                        <a href="{{route('admin.posts.show', $post->slug)}}">View</a>
+                        <a href="{{route('admin.posts.edit', $post->slug)}}">Edit</a>
+                        <!-- Modal trigger button -->
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalId-{{$post->id}}">
+                          Trash
+                        </button>
+                        
+                        <!-- Modal Body -->
+                        <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
+                        <div class="modal fade" id="modal-{{$post->id}}" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" 
+                            role="dialog" aria-labelledby="modalTitleId-{{$post->id}}" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-sm" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="modalTitleId-{{$post->id}}">Delete This post</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Body
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <form action="{{route('admin.posts.destroy')}}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-warning">Confirm</button>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        <!-- Optional: Place to the bottom of scripts -->
+                        <script>
+                            const myModal = new bootstrap.Modal(document.getElementById('modalId'), options)
+                        
+                        </script>
                         VIEW/EDIT/DELETE
                     </td>
                 </tr>

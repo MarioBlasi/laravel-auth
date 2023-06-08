@@ -58,7 +58,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        return view('admin.posts.show', compact('post'));
     }
 
     /**
@@ -69,7 +69,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('admin.posts.edit', compact('post'));
     }
 
     /**
@@ -81,7 +81,15 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
-        //
+        $val_data = $request->validate();
+
+        $slug = Post::generateSlug($val_data['title']);
+
+        $val_data['slug'] = $slug;
+
+        $post->update($val_data);
+
+        return to_route('admin.posts.index')->with('message', 'Post:' . $post->title . 'Update');
     }
 
     /**
@@ -92,6 +100,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return to_route('admin.posts.index')->with('message', 'Post:' . $post->title . 'Delete');
     }
 }
