@@ -10,9 +10,9 @@ class PageController extends Controller
 
 {
     public function index(){
-        // $projectList = Project::all();
-        // return view('home', compact('projectList'));
-        return view('admin.dashboard');
+        $postList = post::all();
+        return view('home', compact('postList'));
+        // return view('admin.dashboard');
     }
     public function about(){
         return view('about');

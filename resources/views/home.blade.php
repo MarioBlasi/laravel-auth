@@ -8,7 +8,7 @@
                 @forelse ($postList as $post)
                     <div class="col">
                         <div class="card h-100 rounded-0 border-0 shadow">
-                            <img class="card-img-top rounded-0" src="{{ $post->image }}" alt="Title">
+                            <img class="card-img-top rounded-0" src="{{ $post->cover_image }}" alt="Title">
                             <div class="card-body">
                                 <h4 class="card-title">{{ $post->name . ' ' . $post->email }}</h4>
                                 <span class="card-text m-0">{{ $post->email }} </span>
@@ -22,7 +22,7 @@
                                 </p>
                             </div>
                             <div class="card-footer bg-white">
-                                <
+                                
                             </div>
                         </div>
                     </div>
@@ -35,4 +35,3 @@
         </div>
     </div>
 @endsection
-sdgsd

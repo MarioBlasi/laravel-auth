@@ -4,7 +4,8 @@
 
 @section('content')
 <h1>SHOW POST TABLE</h1>
-<a name="" id="" class="btn btn-danger" href="{{route('admin.posts.create')}}" role="button">Create Post</a>
+<a class="create_btn btn btn-info position-fixed bottom-0 end-0"
+ href="{{route('admin.posts.create')}}" role="button">Create Post</a>
 
 @include('partials.session_message')
 
@@ -12,7 +13,7 @@
     <table class="table table-striped
     table-hover	
     table-borderless
-    table-primary
+    table-info
     align-middle">
         <thead class="table-light">
             <tr>
@@ -26,17 +27,17 @@
             <tbody class="table-group-divider">
 
                 @forelse ($posts as $post)
-                <tr class="table-primary" >
+                <tr class="table-info" >
                     <td scope="row">{{$post->id}}</td>
                     <td><img height="100" src="{{$post->cover_image}}" alt="{{$post->title}}"></td>
                     <td>{{$post->title}}</td>
                     <td>{{$post->slug}}</td>
                     <td>
-                        <a href="{{route('admin.posts.show', $post->slug)}}">View</a>
-                        <a href="{{route('admin.posts.edit', $post->slug)}}">Edit</a>
+                        <a class="btn btn-prymary" href="{{route('admin.posts.show', $post->slug)}}"><i class="fas fa-eye fa-sm fa-fw"></i></a>
+                        <a class="btn btn-secondary" href="{{route('admin.posts.edit', $post->slug)}}"><i class="fas fa-pencil fa-sm fa-fw"></i></a>
                         <!-- Modal trigger button -->
                         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalId-{{$post->id}}">
-                          Trash
+                          <i class="fas fa-trash fa-sm fa-fw"></i>
                         </button>
                         
                         <!-- Modal Body -->
@@ -54,34 +55,24 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <form action="{{route('admin.posts.destroy')}}" method="post">
+                                        <form action="{{route('admin.posts.destroy', $post)}}" method="post">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-warning">Confirm</button>
+                                        <button type="submit" class="btn btn-danger">Confirm</button>
                                         </form>
-
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        
-                        
-                        <!-- Optional: Place to the bottom of scripts -->
-                        <script>
-                            const myModal = new bootstrap.Modal(document.getElementById('modalId'), options)
-                        
-                        </script>
-                        VIEW/EDIT/DELETE
                     </td>
                 </tr>
                 @empty
-                <tr class="table-primary" >
+                <tr class="table-info" >
                     <td scope="row">No POST</td>
                 </tr>
                 @endforelse
             </tbody>
             <tfoot>
-                
             </tfoot>
     </table>
 </div>
