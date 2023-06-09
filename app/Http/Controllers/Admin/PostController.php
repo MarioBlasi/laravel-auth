@@ -18,7 +18,7 @@ class PostController extends Controller
     {
         $post = Post::orderByDesc('id')->paginate(8);
 
-        return view('admin.posts.index', compact());
+        return view('admin.posts.index', compact('posts'));
     }
 
     /**
@@ -28,7 +28,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        $categories = Category::orderByDesc('id')->get();
+        return view('admin.posts.create', compact('categories'));
     }
 
     /**
