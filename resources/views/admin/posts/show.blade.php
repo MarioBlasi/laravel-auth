@@ -12,8 +12,11 @@
         <div class="col">
             <div class="content">
                 <h2>{{$post->title}}</h2>
-                <p>{{$post->content}}</p>
+                <div class="meta">
+                    <span class="badge bg-primary">{{$post->category?->name}}</span>
+                </div>
             </div>
+            <p>{{$post->content}}</p>
         </div>
     </div>
 

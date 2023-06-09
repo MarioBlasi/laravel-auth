@@ -19,10 +19,12 @@
 
     <div class="mb-3">
         <label for="category_id" class="form-label">Categories</label>
-        <select class="form-select" name="category_id" id="category_id">
+        <select class="form-select @error('category_id') is-invalid @enderror"
+            name="category_id" id="category_id">
             <option value="">Select a category</option>
             @foreach ($categories as $category)
-            <option value="{{$category->id}}" {{$category->id == old('category_id','') ? 'selected' : '' }}>
+            <option value="{{$category->id}}" 
+            {{$category->id == old('category_id','') ? 'selected' : '' }}>
             {{$category->name}}</option>
             @endforeach
         </select>
